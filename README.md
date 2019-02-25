@@ -24,7 +24,7 @@ Consulter le [README](workspaceRos/README.md) du workspace pour plus d'informati
 
 Le dossier `docs` contient tous les documents utiles au projet:
 - Le [sujet](docs/Sujet.pdf)
-- Des [instructions pour utiliser Git](docs/Sujet.pdf)
+- Des [instructions pour utiliser Git](docs/GitWorkflow.md)
 - Un [Mémo pour ROS et Gazebo](docs/MemoROS.pdf)
 
 
