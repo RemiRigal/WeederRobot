@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<robot name="weederbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find weederbot_description)/urdf/macros.urdf.xacro" />
+
+    <link name="base_link"/>
+
+    <joint name="base_to_chassis" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0.3"/>
+    </joint>
+
+    <box_link name="chassis" mass="1.0" sx="0.5" sy="0.3" sz="0.15">
+        <origin xyz="0 0 0"/>
+    </box_link>
+
+</robot>

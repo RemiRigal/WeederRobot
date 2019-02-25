@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<robot name="macros" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="box_link" params="name sx sy sz mass:=0.1 *origin">
+        <link name="${name}">
+            <collision>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <box size="${sx} ${sy} ${sz}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <box size="${sx} ${sy} ${sz}"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <mass value="${mass}" />
+                <xacro:insert_block name="origin"/>
+                <inertia ixx="${(1/12)*mass*(sz*sz+sy*sy)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12)*mass*(sz*sz+sx*sx)}" iyz="0.0"
+                         izz="${(1/12)*mass*(sy*sy+sx*sx)}" />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="cylinder_link" params="name r l mass:=0.1 *origin">
+        <link name="${name}">
+            <collision>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <cylinder radius="${r}" length="${l}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <cylinder radius="${r}" length="${l}"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <mass value="${mass}" />
+                <xacro:insert_block name="origin"/>
+                <inertia ixx="${(1/12)*mass*(3*r*r+l*l)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12)*mass*(3*r*r+l*l)}" iyz="0.0"
+                         izz="${(1/2)*mass*r*r}" />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="sphere_link" params="name r mass:=0.1 *origin">
+        <link name="${name}">
+            <collision>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <sphere radius="${r}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <xacro:insert_block name="origin"/>
+                <geometry>
+                    <sphere radius="${r}"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <mass value="${mass}" />
+                <xacro:insert_block name="origin"/>
+                <inertia ixx="${(2/3)*mass*r*r}" ixy="0.0" ixz="0.0"
+                         iyy="${(2/3)*mass*r*r}" iyz="0.0"
+                         izz="${(2/3)*mass*r*r}" />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="sticky_material" params="link">
+        <gazebo reference="${link}">
+            <mu1>100.0</mu1>
+            <mu2>100.0</mu2>
+            <kp>500000.0</kp>
+            <kd>10.0</kd>
+            <minDepth>0.001</minDepth>
+            <maxVel>10.0</maxVel>
+            <fdir1>0 1 0</fdir1>
+            <material>Gazebo/FlatBlack</material>
+        </gazebo>
+    </xacro:macro>
+
+</robot>

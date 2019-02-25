@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="robot_description" command="rosrun xacro xacro --inorder $(find weederbot_description)/urdf/weederbot.urdf.xacro" />
+
+    <node name="rsp" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+</launch>
